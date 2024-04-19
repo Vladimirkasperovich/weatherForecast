@@ -1,24 +1,18 @@
 import React from 'react';
-import {Backdrop, Button, CircularProgress} from "@mui/material";
+import {Backdrop,  CircularProgress} from "@mui/material";
+import {useAppSelector} from "../hooks/useAppSelector";
+
 
 export const BackDropLoader = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
+    const isLoading = useAppSelector(state => state.loading)
+    console.log(isLoading)
     return (
         <div>
-            <Button onClick={handleOpen}>Show backdrop</Button>
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={open}
-                onClick={handleClose}
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+                open={isLoading}
             >
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit"/>
             </Backdrop>
         </div>
     );

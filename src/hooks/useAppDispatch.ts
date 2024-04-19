@@ -4,7 +4,7 @@ import {bindActionCreators} from "redux";
 import {weatherThunk} from "reducers/weather.reducer";
 
 const actions = {
-    ...weatherThunk
+    ...weatherThunk,
 }
 
 export const useAppDispatch = () => {

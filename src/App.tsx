@@ -6,12 +6,17 @@ import {Header} from "components/Header";
 import {HeaderPropsType} from "types/componentsTypes/HeaderPropsType";
 import {useAppSelector} from "hooks/useAppSelector";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {weatherThunk} from "reducers/weather.reducer";
+import Sun from "./components/Sun";
+import SunWithClouds from "./components/SunWithClouds";
 
 
 function App() {
     const weatherData = useAppSelector(state => state.weatherData);
     const {setWeatherData} = useAppDispatch();
+
+    const celsiusTemperature = weatherData.main ? Math.round(weatherData.main.temp - 273.15) : null;
+    const responseCityName = weatherData.main ? weatherData.name : null;
+    const weatherDescription = weatherData.main ? weatherData.weather[0].description : null
     //don`t forget to leave this object in state)
     const headerProps: HeaderPropsType = {
         title: 'Current weather',
@@ -19,12 +24,12 @@ function App() {
         linkToLinkedin: 'https://www.linkedin.com/in/vladimir-kasperovich-38b157243/',
         linkToFacebook: 'https://www.facebook.com/vladimir.kasperovich.7'
     }
+
     useEffect(() => {
+        //need to choose current city
         setWeatherData('minsk');
     }, []);
 
-
-    console.log(weatherData)
     return (
         <div className="App">
             <Header title={headerProps.title}
@@ -40,11 +45,22 @@ function App() {
                     </div>
                 </section>
                 <section className="second-section">
-                    <div className="second-section__items">
-                        <span>9 &deg;</span>
-                    </div>
+                    {
+                        weatherData.main && (
+                            <div className="second-section__items" >
+                                <span className='city-name__item'>{responseCityName}</span>
+                                {/*<Sun/>*/}
+                                <SunWithClouds/>
+                                <span className='temperature__item'>{`${celsiusTemperature}`}&deg;</span>
+                                <p className='weather-description__item'>{weatherDescription}</p>
+
+                            </div>
+
+                        )
+                    }
                 </section>
             </main>
+            <BackDropLoader/>
         </div>
     );
 }

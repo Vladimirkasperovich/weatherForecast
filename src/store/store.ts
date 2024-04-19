@@ -1,9 +1,11 @@
 import {AnyAction, combineReducers} from "redux";
 import {weatherReducer} from "reducers/weather.reducer";
 import {configureStore, ThunkAction, ThunkDispatch} from "@reduxjs/toolkit";
+import {loadingReducer} from "../reducers/loading.reducer";
 
 export const rootReducer = combineReducers({
-    weatherData: weatherReducer
+    weatherData: weatherReducer,
+    loading: loadingReducer
 })
 export const store = configureStore({
     reducer: rootReducer,
