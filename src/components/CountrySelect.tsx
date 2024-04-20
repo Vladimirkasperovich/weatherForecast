@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {Autocomplete, Box, TextField} from "@mui/material";
+
 interface CountryType {
     code: string;
     label: string;
@@ -432,6 +433,9 @@ export const CountrySelect = () => {
         {code: 'ZM', label: 'Zambia', phone: '260'},
         {code: 'ZW', label: 'Zimbabwe', phone: '263'},
     ];
+    const handleChange = (e:any) => {
+        console.log(e.target.textContent)
+    }
 
     return (
         <Autocomplete
@@ -440,6 +444,8 @@ export const CountrySelect = () => {
             options={countries}
             autoHighlight
             getOptionLabel={(option) => option.label}
+            onChange={handleChange}
+
             renderOption={(props, option) => (
                 <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
                     <img
@@ -449,17 +455,19 @@ export const CountrySelect = () => {
                         src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                         alt=""
                     />
-                    {option.label} ({option.code}) +{option.phone}
+                    {option.label}
                 </Box>
             )}
             renderInput={(params) => (
                 <TextField
                     {...params}
                     label="Choose a country"
+                    onChange={() => {console.log(params)}}
                     inputProps={{
                         ...params.inputProps,
                         autoComplete: 'new-password', // disable autocomplete and autofill
                     }}
+
                 />
             )}
         />

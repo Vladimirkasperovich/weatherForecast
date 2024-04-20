@@ -5,7 +5,6 @@ import {useAppSelector} from "../hooks/useAppSelector";
 
 export const BackDropLoader = () => {
     const isLoading = useAppSelector(state => state.loading)
-    console.log(isLoading)
     return (
         <div>
             <Backdrop

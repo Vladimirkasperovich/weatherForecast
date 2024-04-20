@@ -2,73 +2,59 @@ import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
 const SunWithClouds = () => {
-    // Анимация для облака
-    const cloudAnimation = useSpring({
-        from: { opacity: 0, transform: 'translateY(-50px)' },
-        to: { opacity: 1, transform: 'translateY(0)' },
-        config: { duration: 1000 },
-    });
 
-    // Анимация для солнца
     const sunAnimation = useSpring({
         from: { rotate: 0 },
         to: { rotate: 360 },
         config: { duration: 5000, loop: true },
     });
 
-    // Стили для лучей солнца
-    const rayStyles = Array.from({ length: 12 }).map((_, index) => ({
-        transform: `rotate(${index * 30}deg) translateY(-50px)`,
-    }));
+    const calculateRayPosition = (index: number, raysCount: number, radius: number) => {
+        const angle = (360 / raysCount) * index;
+        const radians = (angle * Math.PI) / 180;
+        const x = radius * Math.cos(radians);
+        const y = radius * Math.sin(radians);
+        return { x, y };
+    };
+
+    const raysCount = 12;
+    const sunRadius = 60;
 
     return (
         <div style={{ display: "flex", justifyContent: 'center', marginTop: '20px', marginBlock: '20px'}}>
-            <div className="sun-with-clouds">
-                {/* Анимированное солнце */}
+            <div className="sun">
+                {/* Sun*/}
                 <animated.div
-                    className="sun"
+                    className="sun-body"
                     style={{
-                        width: '100px',
-                        height: '100px',
+                        width: `${sunRadius * 2}px`,
+                        height: `${sunRadius * 2}px`,
                         borderRadius: '50%',
                         background: 'radial-gradient(circle at 50% 50%, #FFEC80, #FFBF00)',
-                        // position: 'relative',
-                        marginBottom: '-50px', // Поднять солнце на высоту облака
                         transform: sunAnimation.rotate.interpolate((rotate) => `rotate(${rotate}deg)`),
                     }}
                 >
-                    {/* Лучи солнца */}
-                    {rayStyles.map((style, index) => (
-                        <animated.div
-                            key={index}
-                            className="sun-ray"
-                            style={{
-                                ...style,
-                                width: '4px',
-                                height: '30px',
-                                background: 'yellow',
-                                // position: 'absolute',
-                                top: '50%',
-                                left: '50%',
-                                transformOrigin: 'top',
-                            }}
-                        />
-                    ))}
+                    {/* Rays */}
+                    {[...Array(raysCount)].map((_, index) => {
+                        const rayPosition = calculateRayPosition(index, raysCount, sunRadius);
+                        return (
+                            <animated.div
+                                key={index}
+                                className="sun-ray"
+                                style={{
+                                    position: 'absolute',
+                                    top: `calc(100% - ${sunRadius}px)`, // Расстояние лучей от верхней границы солнца
+                                    left: `calc(100% - ${sunRadius}px)`, // Расстояние лучей от левой границы солнца
+                                    width: '2px',
+                                    height: '30px',
+                                    background: 'radial-gradient(circle at 50% 50%, #FFEC80, #FFBF00)',
+                                    transform: `translate(${rayPosition.x}px, ${rayPosition.y}px) rotate(${index * (360 / raysCount)}deg)`,
+                                    transformOrigin: 'top',
+                                }}
+                            />
+                        );
+                    })}
                 </animated.div>
-
-                {/* Анимированное облако */}
-                <animated.div
-                    className="cloud"
-                    style={{
-                        width: '200px',
-                        height: '100px',
-                        background: 'rgba(255, 255, 255, 0.8)',
-                        // position: 'relative',
-                        borderRadius: '20px',
-                        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
-                        ...cloudAnimation,
-                    }}
-                />
             </div>
         </div>
     );
