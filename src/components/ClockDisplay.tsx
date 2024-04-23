@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {format} from "date-fns";
+import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import './components-styles/clockDisplay.css';
 
 export const ClockDisplay = () => {
     const [time, setTime] = useState<string>('');
+
     const getCurrentTime = () => {
         const date = new Date();
-        return format(date, 'HH:mm:ss')
-    }
-    useEffect(() => {
+        return format(date, 'HH:mm:ss');
+    };
 
+    useEffect(() => {
         const clockId = setInterval(() => {
-            setTime(getCurrentTime())
+            setTime(getCurrentTime());
         }, 1000);
 
-        return () => clearInterval(clockId)
+        return () => clearInterval(clockId);
     }, []);
 
-
     return (
-        <div>
-            {time}
+        <div className="clock-container">
+            <div className="clock">{time}</div>
         </div>
     );
 };

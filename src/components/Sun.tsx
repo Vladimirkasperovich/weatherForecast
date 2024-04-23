@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
-const SunWithClouds = () => {
+export const Sun = () => {
 
-    const sunAnimation = useSpring({
+    const sunAnimationEffect = useSpring({
         from: { rotate: 0 },
         to: { rotate: 360 },
         config: { duration: 5000, loop: true },
@@ -31,7 +31,7 @@ const SunWithClouds = () => {
                         height: `${sunRadius * 2}px`,
                         borderRadius: '50%',
                         background: 'radial-gradient(circle at 50% 50%, #FFEC80, #FFBF00)',
-                        transform: sunAnimation.rotate.interpolate((rotate) => `rotate(${rotate}deg)`),
+                        transform: sunAnimationEffect.rotate.interpolate((rotate) => `rotate(${rotate}deg)`),
                     }}
                 >
                     {/* Rays */}
@@ -43,8 +43,8 @@ const SunWithClouds = () => {
                                 className="sun-ray"
                                 style={{
                                     position: 'absolute',
-                                    top: `calc(100% - ${sunRadius}px)`, // Расстояние лучей от верхней границы солнца
-                                    left: `calc(100% - ${sunRadius}px)`, // Расстояние лучей от левой границы солнца
+                                    top: `calc(100% - ${sunRadius}px)`,
+                                    left: `calc(100% - ${sunRadius}px)`,
                                     width: '2px',
                                     height: '30px',
                                     background: 'radial-gradient(circle at 50% 50%, #FFEC80, #FFBF00)',
@@ -60,4 +60,4 @@ const SunWithClouds = () => {
     );
 };
 
-export default SunWithClouds;
+

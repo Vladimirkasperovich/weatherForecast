@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'App.css'
 import {CountrySelect} from "components/CountrySelect";
 import {BackDropLoader} from "components/BackDropLoader";
 import {Header} from "components/Header";
-import {HeaderPropsType} from "types/componentsTypes/HeaderPropsType";
 import {useAppSelector} from "hooks/useAppSelector";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {WeatherDisplay} from "components/WeatherDisplay";
-import {ClockDisplay} from "components/ClockDisplay";
+import {SideBar} from "components/SideBar";
+import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import {IconButtonWIthLink} from "components/IconButtonWIthLink";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import {Footer} from "components/Footer";
 
 
 function App() {
     const weatherData = useAppSelector(state => state.weatherData);
     const {setWeatherData} = useAppDispatch();
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
-    const headerProps: HeaderPropsType = {
+    const headerProps = {
         title: 'Current weather',
         linkToGithub: 'https://github.com/Vladimirkasperovich',
         linkToLinkedin: 'https://www.linkedin.com/in/vladimir-kasperovich-38b157243/',
@@ -27,12 +34,17 @@ function App() {
         setWeatherData(cityName);
     }
 
+    const toggleSideBar = () => {
+        setIsOpen((prevState) => !prevState)
+    }
+
     return (
         <div className="App">
             <Header title={headerProps.title}
                     linkToGithub={headerProps.linkToGithub}
                     linkToLinkedin={headerProps.linkToLinkedin}
                     linkToFacebook={headerProps.linkToFacebook}
+                    changeSideBarStatus={toggleSideBar}
             />
             <main className='main'>
                 <section className='first-section'>
@@ -56,8 +68,10 @@ function App() {
                     {
                         !weatherData.main && <h1 className='no-city-message'>You need to choose current city </h1>
                     }
+                    <SideBar isOpen={isOpen} changeSideBarStatus={toggleSideBar}/>
                 </section>
             </main>
+            <Footer/>
             <BackDropLoader/>
         </div>
     );
