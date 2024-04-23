@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import 'App.css'
 import {CountrySelect} from "components/CountrySelect";
 import {BackDropLoader} from "components/BackDropLoader";
@@ -7,14 +7,14 @@ import {HeaderPropsType} from "types/componentsTypes/HeaderPropsType";
 import {useAppSelector} from "hooks/useAppSelector";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {WeatherDisplay} from "components/WeatherDisplay";
-
+import {ClockDisplay} from "components/ClockDisplay";
 
 
 function App() {
     const weatherData = useAppSelector(state => state.weatherData);
     const {setWeatherData} = useAppDispatch();
 
-    //don`t forget to leave this object in state)
+
     const headerProps: HeaderPropsType = {
         title: 'Current weather',
         linkToGithub: 'https://github.com/Vladimirkasperovich',
@@ -22,10 +22,10 @@ function App() {
         linkToFacebook: 'https://www.facebook.com/vladimir.kasperovich.7'
     }
 
-    useEffect(() => {
-        //need to choose current city
-        setWeatherData('minsk');
-    }, []);
+
+    const setCityName = (cityName: string) => {
+        setWeatherData(cityName);
+    }
 
     return (
         <div className="App">
@@ -37,8 +37,7 @@ function App() {
             <main className='main'>
                 <section className='first-section'>
                     <div className='first-section__items'>
-                        <h1>Vladimir Kasperovich</h1>
-                        <CountrySelect/>
+                        <CountrySelect setCityName={setCityName}/>
                     </div>
                 </section>
                 <section className="second-section">
@@ -51,8 +50,11 @@ function App() {
                                                             pressure={weatherData.main.pressure}
                                                             humidity={weatherData.main.humidity}
                                                             sunrise={weatherData.sys.sunrise}
-                                                            sunSet={weatherData.sys.sunset}
+                                                            sunset={weatherData.sys.sunset}
                         />
+                    }
+                    {
+                        !weatherData.main && <h1 className='no-city-message'>You need to choose current city </h1>
                     }
                 </section>
             </main>
