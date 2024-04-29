@@ -7,13 +7,6 @@ import {useAppSelector} from "hooks/useAppSelector";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {WeatherDisplay} from "components/WeatherDisplay";
 import {SideBar} from "components/SideBar";
-import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import {IconButtonWIthLink} from "components/IconButtonWIthLink";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import {Footer} from "components/Footer";
 
 
 function App() {
@@ -71,7 +64,7 @@ function App() {
                     <SideBar isOpen={isOpen} changeSideBarStatus={toggleSideBar}/>
                 </section>
             </main>
-            <Footer/>
+            {/*<Footer/>*/}
             <BackDropLoader/>
         </div>
     );

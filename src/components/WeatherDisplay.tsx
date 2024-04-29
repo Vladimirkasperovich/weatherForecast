@@ -29,6 +29,7 @@ export const WeatherDisplay = ({
                                    sunset
                                }: WeatherDisplayPropsType) => {
 
+
     return (
         <div className="second-section__items">
             <div className="city-name-temperature">
