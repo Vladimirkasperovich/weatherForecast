@@ -1,34 +1,22 @@
 import React, {SyntheticEvent} from 'react';
 import {Autocomplete, Box, Button, TextField} from "@mui/material";
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { CountryType } from 'reducers/city.reducer';
 
-interface CountryType {
-    code: string;
-    label: string;
 
-}
 
 type CountrySelectPropsType = {
     setCityName: (cityName: string) => void
 }
-export const CountrySelect = ({setCityName}: CountrySelectPropsType) => {
-    const countries: readonly CountryType[] = [
-        {code: 'BY', label: 'Minsk',},
-        {
-            code: 'UA',
-            label: 'Kiev'
+export const CitySelect = ({setCityName}: CountrySelectPropsType) => {
 
-        },
-        {code: 'ES', label: 'Madrid'},
-        {
-            code: 'JP',
-            label: 'Tokio',
-        },
+    const citySelector = useAppSelector(state => state.city);
 
-    ];
+    
     const handleChange = (event: SyntheticEvent, value: CountryType | null) => {
         if (value) {
-            setCityName(value?.label.toLowerCase())
+            setCityName(value.label.toLowerCase())
         }
 
     }
@@ -38,7 +26,7 @@ export const CountrySelect = ({setCityName}: CountrySelectPropsType) => {
             <Autocomplete
                 id="country-select-demo"
                 sx={{width: 300}}
-                options={countries}
+                options={citySelector}
                 autoHighlight
                 getOptionLabel={(option) => option.label}
                 onChange={handleChange}
@@ -64,14 +52,14 @@ export const CountrySelect = ({setCityName}: CountrySelectPropsType) => {
                         }}
                         inputProps={{
                             ...params.inputProps,
-                            autoComplete: 'new-password', // disable autocomplete and autofill
+                            autoComplete: 'new-password', 
                         }}
 
                     />
 
                 )}
             />
-            {/*<Button variant='text' startIcon={<AddCircleOutlineSharpIcon/>} style={{marginLeft: '30px'}}>Add city</Button>*/}
+    
         </div>
 
 
