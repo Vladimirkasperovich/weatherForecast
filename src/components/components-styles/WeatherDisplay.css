@@ -1,3 +1,7 @@
+.weather-data {
+    text-align: center;
+}
+
 .second-section__items {
     display: flex;
     flex-direction: column;
@@ -9,13 +13,14 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.city-name-temperature{
+
+.city-name-temperature {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.city-name__item{
+.city-name__item {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 700;
@@ -25,38 +30,43 @@
     margin-right: 20px;
 
 }
+
 .temperature__item {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
-    display:block;
+    display: block;
     opacity: 0.6;
 
 }
-.weather-description__item{
+
+.weather-description__item {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
-    display:block;
+    display: block;
     opacity: 0.6;
 }
-.weather-info__items{
+
+.weather-info__items {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 50%;
     justify-content: space-around;
+    margin: auto;
     margin-bottom: 30px;
 }
 
-.weather-humidity__item{
+.weather-humidity__item {
     margin-right: 30px;
 }
-.weather-sunset__item{
+
+.weather-sunset__item {
     margin-right: 15px;
 }

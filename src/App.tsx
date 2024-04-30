@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import 'App.css'
-import {CountrySelect} from "components/CountrySelect";
-import {BackDropLoader} from "components/BackDropLoader";
-import {Header} from "components/Header";
-import {useAppSelector} from "hooks/useAppSelector";
-import {useAppDispatch} from "hooks/useAppDispatch";
-import {WeatherDisplay} from "components/WeatherDisplay";
-import {SideBar} from "components/SideBar";
+import { CountrySelect } from "components/CountrySelect";
+import { BackDropLoader } from "components/BackDropLoader";
+import { Header } from "components/Header";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { WeatherDisplay } from "components/WeatherDisplay";
+import { SideBar } from "components/SideBar";
 
 
 function App() {
     const weatherData = useAppSelector(state => state.weatherData);
-    const {setWeatherData} = useAppDispatch();
+    const { setWeatherData } = useAppDispatch();
     const [isOpen, setIsOpen] = useState<boolean>(false)
-
+    
 
     const headerProps = {
         title: 'Current weather',
@@ -31,43 +31,38 @@ function App() {
         setIsOpen((prevState) => !prevState)
     }
 
+    
+
+
     return (
         <div className="App">
             <Header title={headerProps.title}
-                    linkToGithub={headerProps.linkToGithub}
-                    linkToLinkedin={headerProps.linkToLinkedin}
-                    linkToFacebook={headerProps.linkToFacebook}
-                    changeSideBarStatus={toggleSideBar}
+                linkToGithub={headerProps.linkToGithub}
+                linkToLinkedin={headerProps.linkToLinkedin}
+                linkToFacebook={headerProps.linkToFacebook}
+                changeSideBarStatus={toggleSideBar}
             />
             <main className='main'>
                 <section className='first-section'>
                     <div className='first-section__items'>
-                        <CountrySelect setCityName={setCityName}/>
+                        <CountrySelect setCityName={setCityName} />
                     </div>
                 </section>
                 <section className="second-section">
                     {
-                        weatherData.main && <WeatherDisplay responseCityName={weatherData.name}
-                                                            celsiusTemperature={Math.round(weatherData.main.temp - 273.15)}
-                                                            weatherDescription={weatherData.weather[0].description}
-                                                            windSpeed={weatherData.wind.speed}
-                                                            windDeg={weatherData.wind.deg}
-                                                            pressure={weatherData.main.pressure}
-                                                            humidity={weatherData.main.humidity}
-                                                            sunrise={weatherData.sys.sunrise}
-                                                            sunset={weatherData.sys.sunset}
-                        />
+                        weatherData?.length && <WeatherDisplay />
                     }
                     {
-                        !weatherData.main && <h1 className='no-city-message'>You need to choose current city </h1>
+                        !weatherData?.length && <h1 className='no-city-message'>You need to choose current city </h1>
                     }
-                    <SideBar isOpen={isOpen} changeSideBarStatus={toggleSideBar}/>
+                    <SideBar isOpen={isOpen} changeSideBarStatus={toggleSideBar} />
                 </section>
             </main>
             {/*<Footer/>*/}
-            <BackDropLoader/>
+            <BackDropLoader />
         </div>
     );
 }
 
 export default App;
+
