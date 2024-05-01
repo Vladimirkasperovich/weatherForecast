@@ -13,17 +13,20 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
 
 export type SideBarPropsType = {
-    isOpen: boolean
+    isOpenSideBar: boolean
     changeSideBarStatus: () => void
+    toggleTransitionsModal: () => void
 }
-export const SideBar = ({isOpen, changeSideBarStatus}: SideBarPropsType) => {
+
+export const SideBar = ({isOpenSideBar, changeSideBarStatus, toggleTransitionsModal}: SideBarPropsType) => {
+    
     const toggleDrawer = () => {
-        changeSideBarStatus()
+        changeSideBarStatus();
     };
 
-
     const handleClick = () => {
-        alert(1)
+        toggleTransitionsModal();
+        toggleDrawer();
     }
 
     const DrawerList = (
@@ -54,7 +57,7 @@ export const SideBar = ({isOpen, changeSideBarStatus}: SideBarPropsType) => {
     );
     return (
         <div>
-            <Drawer open={isOpen} onClose={toggleDrawer}>
+            <Drawer open={isOpenSideBar} onClose={toggleDrawer}>
                 {DrawerList}
             </Drawer>
         </div>

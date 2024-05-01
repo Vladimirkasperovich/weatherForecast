@@ -13,8 +13,8 @@ import { TransitionsModal } from 'components/TransitionsModal';
 function App() {
     const weatherData = useAppSelector(state => state.weatherData);
     const { setWeatherData } = useAppDispatch();
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    
+    const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
+    const [isOpenTransitionsModal, setIsOpenTransitionsSideBar] = useState<boolean>(false);
 
 
     const setCityName = (cityName: string) => {
@@ -22,10 +22,12 @@ function App() {
     }
 
     const toggleSideBar = () => {
-        setIsOpen((prevState) => !prevState)
+        setIsOpenSideBar((prevState) => !prevState)
     }
 
-    
+    const toggleTransitionsModal = () => {
+          setIsOpenTransitionsSideBar((prevState) => !prevState);
+    }
 
 
     return (
@@ -39,7 +41,9 @@ function App() {
             <main className='main'>
                 <section className='first-section'>
                     <div className='first-section__items'>
-                    <TransitionsModal/>
+                       <TransitionsModal toggleTransitionsModal={toggleTransitionsModal} 
+                                         isOpenTransitionsModal={isOpenTransitionsModal}
+                       />
                         <CitySelect setCityName={setCityName} />
                     </div>
                 </section>
@@ -48,7 +52,11 @@ function App() {
                         weatherData.length ? <WeatherDisplay /> : <h1 className='no-city-message'>You need to choose current city </h1>
                     }
                   
-                    <SideBar isOpen={isOpen} changeSideBarStatus={toggleSideBar} />
+                    <SideBar isOpenSideBar={isOpenSideBar} 
+                             changeSideBarStatus={toggleSideBar} 
+                             toggleTransitionsModal={toggleTransitionsModal} 
+                        
+                    />
                 </section>
             </main>
             <BackDropLoader />
