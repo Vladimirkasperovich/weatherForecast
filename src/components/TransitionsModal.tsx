@@ -8,7 +8,9 @@ import { ButtonWrapper } from "./ButtonWrapper";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "store/store";
 import { cityAction } from "reducers/city.reducer";
-import { FormikErrors, useFormik, FormikValues} from "formik";
+import { FormikErrors, useFormik, FormikValues } from "formik";
+import { log } from "console";
+import { ShowValidationErrors } from "./ShowValidationErrors";
 
 const style = {
   position: "absolute" as "absolute",
@@ -45,17 +47,29 @@ export const TransitionsModal = ({
     },
     validate: (values) => {
       const errors: FormikErrors<FormikValues> = {};
-      if (!values) {
+      if (!values.code) {
+        errors.code = "Country code is required";
+      } else if (values.code.length !== 2) {
+        errors.code = "Country code must be 2 characters long";
+      } else if (!/^[A-Z]+$/.test(values.code)) {
+        errors.code = "Country code must consist of uppercase letters";
+      }
+
+      if (!values.label) {
+        errors.label = "City name is required";
+      } else if (values.label.length < 2) {
+        errors.label = "City name must be at least 2 characters long";
       }
       return errors;
     },
     onSubmit: (values) => {
-      dispatch(cityAction(values));
+      // dispatch(cityAction(values));
       formik.resetForm();
-      handleClose();
+      // handleClose();
     },
   });
-
+  console.log(formik.errors.code);
+  console.log(formik.errors.label);
   return (
     <div>
       <Modal
@@ -79,11 +93,17 @@ export const TransitionsModal = ({
                 variant="outlined"
                 getFieldProps={formik.getFieldProps("label")}
               />
+              {formik.errors.label && formik.touched.label && (
+                <ShowValidationErrors error={formik.errors.label} />
+              )}
               <InputWrapper
                 label="Country code"
                 variant="outlined"
                 getFieldProps={formik.getFieldProps("code")}
               />
+              {formik.errors.code && formik.touched.code && (
+                <ShowValidationErrors error={formik.errors.code} />
+              )}
               <ButtonWrapper text="ok" variant="contained" type="submit" />
             </Box>
           </Fade>
