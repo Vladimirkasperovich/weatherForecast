@@ -7,10 +7,9 @@ import { InputWrapper } from "./InputWrapper";
 import { ButtonWrapper } from "./ButtonWrapper";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "store/store";
-import { cityAction } from "reducers/city.reducer";
 import { FormikErrors, useFormik, FormikValues } from "formik";
-import { log } from "console";
-import { ShowValidationErrors } from "./ShowValidationErrors";
+import { ShowValidationErrors } from "components/showValidationError/ShowValidationErrors";
+import {cityAction} from "reducers/city.reducer";
 
 const style = {
   position: "absolute" as "absolute",
@@ -63,13 +62,13 @@ export const TransitionsModal = ({
       return errors;
     },
     onSubmit: (values) => {
-      // dispatch(cityAction(values));
+      dispatch(cityAction(values));
       formik.resetForm();
-      // handleClose();
+      handleClose();
     },
   });
-  console.log(formik.errors.code);
-  console.log(formik.errors.label);
+
+
   return (
     <div>
       <Modal
@@ -104,7 +103,7 @@ export const TransitionsModal = ({
               {formik.errors.code && formik.touched.code && (
                 <ShowValidationErrors error={formik.errors.code} />
               )}
-              <ButtonWrapper text="ok" variant="contained" type="submit" />
+              <ButtonWrapper text="ok" variant="contained" type="submit" disabled={Boolean(formik.errors.code || formik.errors.label)}/>
             </Box>
           </Fade>
         </form>

@@ -6,7 +6,7 @@ import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import {HeaderPropsType} from "types/componentsTypes/HeaderPropsType";
 import {IconButtonWIthLink} from "components/IconButtonWIthLink";
 import MenuIcon from '@mui/icons-material/Menu';
-export const Header = ({title, linkToGithub, linkToLinkedin, linkToFacebook, changeSideBarStatus}: HeaderPropsType) => {
+export const Header = ({ linkToGithub, linkToLinkedin, linkToFacebook, changeSideBarStatus}: HeaderPropsType) => {
     const handleSideBarToggle = () => {
         changeSideBarStatus()
     }
@@ -15,8 +15,6 @@ export const Header = ({title, linkToGithub, linkToLinkedin, linkToFacebook, cha
         <AppBar position="static" color='inherit'>
             <Toolbar sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Typography variant="h6">
-                    {/*{title}*/}
-                    {/*<Button startIcon={<MenuIcon/>} size='large' variant='text'></Button>*/}
                     <IconButton size='large' onClick={handleSideBarToggle}>
                         <MenuIcon/>
                     </IconButton>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import './components-styles/clockDisplay.css';
+import 'components/clockDisplay/clockDisplay.css';
 
 export const ClockDisplay = () => {
     const [time, setTime] = useState<string>('');
