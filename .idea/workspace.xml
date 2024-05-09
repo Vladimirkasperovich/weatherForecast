@@ -4,37 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9b482ae-1806-40d0-884a-cb6f1c1859a0" name="Changes" comment="Changed ClockDisplay.tsx, clockDisplay.css, CountrySelect.tsx, created Footer.tsx" />
+    <list default="true" id="0db563ff-9049-44e2-a4a0-ea32de83b6f2" name="Changes" comment="Created AppContainer component, and leave all logic and states there,Implemented decomposition for optimization my Application">
+      <change afterPath="$PROJECT_DIR$/src/components/persistentDrawerLeft/PersistentDrawerLeft.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sideBar/SideBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sideBar/SideBarHeader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/appContainer/AppContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appContainer/AppContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/componentsTypes/HeaderPropsType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/componentsTypes/HeaderPropsType.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "last_opened_file_path": "D:/myDocks/projects/JS_LESSONS",
+    "last_opened_file_path": "D:/docs/all_projects/react/weatherForecast/src/components/sideBar",
     "node.js.selected.package.tslint": "(autodetect)",
-    "ts.external.directory.path": "D:\\myDocks\\projects\\weather\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "D:\\docs\\all_projects\\react\\weatherForecast\\node_modules\\typescript\\lib"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="deploy" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.deploy" />
-      </list>
-    </recent_temporary>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\docs\all_projects\react\weatherForecast\src\components\sideBar" />
+    </key>
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created AppContainer component, and leave all logic and states there,Implemented decomposition for optimization my Application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created AppContainer component, and leave all logic and states there,Implemented decomposition for optimization my Application" />
   </component>
 </project>
